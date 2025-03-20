@@ -3,19 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=yes'>
-    <title>Unity WebGL Player | GEMO3</title>
+    <title>GEMO3</title>
     <link rel="stylesheet" href="TemplateData/style.css">
     <style>
         html{
             height: -webkit-fill-available;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            width: 100vw;
-            overflow: hidden;
         }
         .ctaDiv {
             display: flex;
@@ -27,7 +19,6 @@
             right: 0;
             top: 0;
             bottom: 0;
-            background: #fffa;
             z-index: 99;
         }
     </style>
@@ -41,10 +32,15 @@
     <video id="webcam-video" muted autoplay playsinline style="width:1px;position:absolute"></video>
     <!-- <video id="webcam-video" muted autoplay playsinline style="width:100%; height:100%; object-fit:cover; position:absolute"></video> -->
     <canvas id="video-canvas" style="width:100%; height:100%; object-fit:cover; position:absolute"></canvas>
-    <div id="startARDiv" class="ctaDiv">
-        <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
-        <p style="text-align: center; width:60vw;">This augmented reality experience requires access to your device's camera</p>
-        <button id="startARButton" onclick="StartAR()" style="display:none">ALLOW ACCESS</button>
+    <div id="startARDiv">
+        <div class="customBox">
+            <img src="TemplateData/images/logo.png" alt="Proyecto GEMO" />
+            <p class="textBox">Estas a punto de iniciar una Experiencia de Realidad Aumentada.</p>
+            <p>Para ello necesitamos acceso al visor de su dispositivo.</p>
+            <!-- style="display:none" -->
+            <select id="chooseCamSel" style="display:none" onchange="SelectCam()"></select>
+            <button id="startARButton" style="display:none" onclick="StartAR()">PERMITIR ACCESO</button>
+        </div>
     </div>
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
