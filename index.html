@@ -32,16 +32,25 @@
     <video id="webcam-video" muted autoplay playsinline style="width:1px;position:absolute"></video>
     <!-- <video id="webcam-video" muted autoplay playsinline style="width:100%; height:100%; object-fit:cover; position:absolute"></video> -->
     <canvas id="video-canvas" style="width:100%; height:100%; object-fit:cover; position:absolute"></canvas>
-    <div id="startARDiv">
+    <!-- AQUI EL DIV QUE SE MUESTRA LA INFORMACION -->
+    <div id="startARDiv" class="ctaDiv">
         <div class="customBox">
             <img src="TemplateData/images/logo.png" alt="Proyecto GEMO" />
             <p class="textBox">Estas a punto de iniciar una Experiencia de Realidad Aumentada.</p>
             <p>Para ello necesitamos acceso al visor de su dispositivo.</p>
-            <!-- style="display:none" -->
-            <select id="chooseCamSel" style="display:none" onchange="SelectCam()"></select>
-            <button id="startARButton" style="display:none" onclick="StartAR()">PERMITIR ACCESO</button>
+            <select id="chooseCamSel" style="display: none;" onchange="SelectCam()"></select>
+            <button id="startARButton" onclick="StartAR()" style="display:none">PERMITIR ACCESO</button>
         </div>
     </div>
+    <!--<div id="startARDiv">
+        <div class="customBox">
+            <img src="TemplateData/images/logo.png" alt="Proyecto GEMO" />
+            <p class="textBox">Estas a punto de iniciar una Experiencia de Realidad Aumentada.</p>
+            <p>Para ello necesitamos acceso al visor de su dispositivo.</p>
+            <select id="chooseCamSel" onchange="SelectCam()" style="display:none"></select>
+            <button id="startARButton" onclick="StartAR()" style="display:none">PERMITIR ACCESO</button>
+        </div>
+    </div>-->
     <div id="screenshotDiv" style="display: none;" class="ctaDiv">
         <div style="position:relative; background-color:white; padding:10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
             <img id="screenshotImg" src="" alt="screenshot" style="width:80vw; height:80vh">
@@ -88,7 +97,6 @@
                     ShowError("Failed to initialize the experience.");
                     return;
                 }
-                
                 await LoadWebcams();
                 document.getElementById("startARButton").style.display = "block";
             }
@@ -100,7 +108,6 @@
             function StartAR() {
                 canvas.style.width = window.innerWidth + "px";
                 canvas.style.height = window.innerHeight + "px";
-                
                 document.getElementById("startARDiv").style.display = "none";
                 createUnityInstance(document.querySelector("#unity-canvas"), {
                     dataUrl: "Build/100(3).data",
@@ -145,7 +152,7 @@
                     console.error("getUserMedia error - " , err);
                     ShowError("Failed to start the experience. Camera permission was denied");
                     window.requestingForPermissions = false;
-                }           
+                }
             }
             async function StartWebcam(){
                 console.log("StartWebcam")
@@ -167,12 +174,12 @@
                     catch(err){
                         console.error("Webcam failed to start - ", err);
                         window.unityInstance.SendMessage('ARCamera', 'OnStartWebcamFail');
-                    }   
+                    }
                 }
                 else{
                     console.error("Webcam failed to start - permission not yet granted");
                     window.unityInstance.SendMessage('ARCamera', 'OnStartWebcamFail');
-                }  
+                }
             }
             async function LoadWebcams(){
                 let camDevices = [];
@@ -192,8 +199,7 @@
                         else{
                             //back and front
                             camDevices.push(mediaDevice);
-                        }   
-                        
+                        }
                         ctr++;
                     }
                 });
@@ -253,13 +259,12 @@
             function ShowConfirmUrl(url){
                 document.getElementById("confirmUrlDiv").style.display = "flex";
                 window.newUrlString = url;
-                document.getElementById("confirmUrlText").innerText = "Are you sure you want to visit " + url;                
+                document.getElementById("confirmUrlText").innerText = "Are you sure you want to visit " + url;
             }
             window.ITRACKER_GLOBALS = {
                 //place global settings here
                 INTERNAL_SMOOTHFACTOR_POS: .075,
             }
-            
     </script>
 </body>
 </html>

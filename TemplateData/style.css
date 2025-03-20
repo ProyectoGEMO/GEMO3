@@ -11,6 +11,7 @@ body {
     top: 0;
     bottom: 0;
     z-index: 99;
+    overflow: hidden;
 }
 #unity-container { position: absolute }
 #unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
@@ -61,8 +62,6 @@ body {
     width: 90vw;
 }
 
-/*
-
 #startARButton{
     background-color: rebeccapurple;
     width: 90vw;
@@ -80,5 +79,3 @@ body {
     font-weight: bold;
     border-radius: 5vw;
 }
-
-*/
